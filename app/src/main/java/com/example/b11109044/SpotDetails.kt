@@ -62,7 +62,7 @@ fun SpotDetails(
         Box(
             modifier = Modifier
                 .weight(1f)
-                .padding(horizontal = 16.dp)
+                .padding(horizontal = 16.dp),
         ) {
             Column(
                 modifier = Modifier
@@ -97,29 +97,35 @@ fun SpotDetails(
                         text = "地址：${spot.location}",
 
                     )
-                    Text(
-                        text = "透過Google Map檢視位置",
-                        style = MaterialTheme.typography.body1.copy(color = Color.Black),
+                    Box(
                         modifier = Modifier
-                            .clickable {
-                                onMapClicked()
-                                val mapUrl = "https://www.google.com/maps/search/?api=1&query=${spot.location}"
-                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(mapUrl))
-                                if (intent.resolveActivity(context.packageManager) != null) {
-                                    context.startActivity(intent)
-                                } else {
-                                    val webIntent = Intent(Intent.ACTION_VIEW, Uri.parse(mapUrl))
-                                    context.startActivity(webIntent)
+                            .fillMaxSize()
+                            .padding(16.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = "透過Google Map檢視位置",
+                            style = MaterialTheme.typography.body1.copy(color = Color.White),
+                            modifier = Modifier
+                                .clickable {
+                                    onMapClicked()
+                                    val mapUrl = "https://www.google.com/maps/search/?api=1&query=${spot.location}"
+                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(mapUrl))
+                                    if (intent.resolveActivity(context.packageManager) != null) {
+                                        context.startActivity(intent)
+                                    } else {
+                                        val webIntent = Intent(Intent.ACTION_VIEW, Uri.parse(mapUrl))
+                                        context.startActivity(webIntent)
+                                    }
                                 }
-                            }
-                                .padding(vertical = 16.dp)
-                                .fillMaxWidth()
-                                .background(color = dex),
-                                color = Color.White,
-                                fontSize = 24.sp,
-                                textAlign = TextAlign.Center,
-
-                    )
+                                .padding(vertical = 12.dp)
+                                .background(color = dex)
+                                .padding(16.dp),
+                            color = Color.White,
+                            fontSize = 14.sp,
+                            textAlign = TextAlign.Center,
+                        )
+                    }
                 }
             }
         }

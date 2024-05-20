@@ -1,6 +1,7 @@
 package com.example.b11109044
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -12,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -20,6 +22,7 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun Front(spots: List<Spot>, onSpotSelected: (Spot) -> Unit) {
+    val dex = Color(0xFF004D8D)
     Column(modifier = Modifier
         .fillMaxSize()
         .padding(5.dp)
@@ -28,8 +31,10 @@ fun Front(spots: List<Spot>, onSpotSelected: (Spot) -> Unit) {
             text = "韓國熱門旅遊景點",
             modifier = Modifier
                 .padding(vertical = 16.dp)
+                .background(color = dex)
                 .fillMaxWidth(),
             fontSize = 44.sp,
+            color = Color.White,
             textAlign = TextAlign.Center
         )
         Column(modifier = Modifier.weight(1f)) {
@@ -58,7 +63,7 @@ fun SpotItem(spot: Spot, onClick: () -> Unit) {
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier
-                .size(100.dp)
+                .size(160.dp)
                 .padding(start = 3.dp)
                 .padding(borderWidth)
                 .clip(RoundedCornerShape(16.dp))
@@ -70,7 +75,7 @@ fun SpotItem(spot: Spot, onClick: () -> Unit) {
             ) {
                 Text(
                     text = spot.name,
-                    style = MaterialTheme.typography.h6.copy(fontSize = 20.sp),
+                    style = MaterialTheme.typography.h6.copy(fontSize = 24.sp),
                     modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Start,
 
